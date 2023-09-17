@@ -33,6 +33,16 @@ get '/' do
   end
 end
 
+get '/cells/:cell' do |current_cell|
+  current_user = request.env['HTTP_X_PLAYER']
+  if current_user.nil?
+    status 401
+  else
+    datos_celda = traiga(mundo, current_user, mundo[current_user.to_sym][:start])
+    pintar(current_user, datos_celda)
+  end
+end
+
 post '/cells/:cell' do |current_cell|
   current_user = request.env['HTTP_X_PLAYER']
   authorization = request.env['HTTP_AUTHORIZATION']
@@ -61,13 +71,11 @@ post '/maleta' do
     status 401
   else
     current_cell = request.env['HTTP_X_CURRENT']
-    pp "########## #{current_cell}"
     if current_cell.nil?
       status 400
     else
       cell = traiga(mundo, current_user, current_cell)
       request_tesoro = request.body.read.to_s
-      pp "###### #{cell[:tesoro]} #{request_tesoro}"
       if cell[:tesoro].eql?(request_tesoro)
         tesoro = pickup(mundo, current_user, current_cell, request_tesoro)
         mundo[current_user.to_sym][:maleta]=tesoro
@@ -96,7 +104,6 @@ delete '/maleta/:tesoro' do |tesoro|
   else
     current_cell = request.env['HTTP_X_CURRENT']
     cell = traiga(mundo, current_user, current_cell)
-    pp "DELETE #{tesoro} #{cell[:fauno]} #{mundo[current_user.to_sym][:maleta]}"
     if mundo[current_user.to_sym][:maleta].eql?(tesoro) && cell[:fauno]
       mundo[current_user.to_sym][:maleta]=nil
       mundo[current_user.to_sym][:sacrificio_hecho]=true

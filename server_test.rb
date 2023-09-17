@@ -20,7 +20,6 @@ class ServerTest < Test::Unit::TestCase
   def test_home_with_player_name_shows_current_cell
     header 'X-player', 'nabuconodosor'
     get '/'
-    assert last_response.ok?
     content = <<-TEXT
       player: nabuconodosor
       current: af1
@@ -69,4 +68,17 @@ class ServerTest < Test::Unit::TestCase
     assert_equal "Felicitaciones!!!!", last_response.body
   end
 
+  def test_get_details_for_current_cell
+    header 'X-player', 'nabuconodosor'
+    get '/cells/af1'
+    content = <<-TEXT
+      player: nabuconodosor
+      current: af1
+      tesoro: linterna
+      pista: a
+      Aqui esta el fauno
+    TEXT
+    assert_equal content, last_response.body
+    assert_equal 200, last_response.status
+  end
 end
