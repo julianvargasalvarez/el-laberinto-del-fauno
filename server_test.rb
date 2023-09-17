@@ -21,6 +21,10 @@ class ServerTest < Test::Unit::TestCase
     header 'X-player', 'nabuconodosor'
     get '/'
     assert last_response.ok?
-    assert_equal 'player: nabuconodosor', last_response.body
+    content = <<-TEXT
+      player: nabuconodosor
+      current: af1
+    TEXT
+    assert_equal content, last_response.body
   end
 end
