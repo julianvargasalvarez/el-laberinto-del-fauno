@@ -24,6 +24,9 @@ class ServerTest < Test::Unit::TestCase
     content = <<-TEXT
       player: nabuconodosor
       current: af1
+      tesoro: linterna
+
+      Aqui esta el fauno
     TEXT
     assert_equal content, last_response.body
   end
