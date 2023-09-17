@@ -1,7 +1,6 @@
 require_relative 'cell'
 require 'test/unit'
 
-
 class TestCell < Test::Unit::TestCase
   def test_shows_cell_details_by_cell_name
     # Does not show neighbours
