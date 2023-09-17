@@ -25,7 +25,12 @@ class ServerTest < Test::Unit::TestCase
       current: af1
       tesoro: linterna
       pista: a
+      arriba: ach
+      abajo: rti
+      derecha: zlm
+      izquierda: nac
       Aqui esta el fauno
+
     TEXT
     assert_equal content, last_response.body
     assert_equal 200, last_response.status
@@ -76,7 +81,12 @@ class ServerTest < Test::Unit::TestCase
       current: af1
       tesoro: linterna
       pista: a
+      arriba: ach
+      abajo: rti
+      derecha: zlm
+      izquierda: nac
       Aqui esta el fauno
+
     TEXT
     assert_equal content, last_response.body
     assert_equal 200, last_response.status

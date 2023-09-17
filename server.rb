@@ -32,7 +32,11 @@ def pintar(current_user, celda)
       current: #{celda[:nombre]}
       #{"tesoro: #{celda[:tesoro]}" if celda[:tesoro]}
       #{"pista: #{celda[:pista]}" if celda[:pista]}
-      #{"Aqui esta el fauno" if celda[:fauno]}
+      #{"arriba: #{celda[:arriba]}" if celda[:arriba]}
+      #{"abajo: #{celda[:abajo]}" if celda[:abajo]}
+      #{"derecha: #{celda[:derecha]}" if celda[:derecha]}
+      #{"izquierda: #{celda[:izquierda]}" if celda[:izquierda]}
+      #{"Aqui esta el fauno\n" if celda[:fauno]}
     TEXT
 end
 
