@@ -45,11 +45,12 @@ class ServerTest < Test::Unit::TestCase
     header 'X-player', 'nabuconodosor'
     header 'X-current', 'af1'
 
+    mundo[:nabuconodosor][:af1][:tesoro] = 'linterna'
+
     post '/maleta', 'linterna' # Pick up the treasure
     assert_equal 201, last_response.status
 
     delete '/maleta/linterna'  # Sacrifices treasure
-
     assert_equal 200, last_response.status
   end
 

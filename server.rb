@@ -1,13 +1,17 @@
 require 'sinatra'
 require_relative 'cell'
 
-mundo = {
+$mundo = {
   nabuconodosor: {
     start: 'af1',
     af1: Celda.new('af1', 'ach', 'rti', 'zlm', 'nac', 'linterna', true, 'a'),
     sacrificio_hecho: false,
     password: 'a'
 }}
+
+def mundo
+  $mundo
+end
 
 def pintar(current_user, celda)
     <<-TEXT
