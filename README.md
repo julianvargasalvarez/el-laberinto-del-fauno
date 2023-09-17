@@ -24,7 +24,6 @@ x-nombre: julian
 
 200 OK
 x-current: /aa
-x-premio: no, no hay
 
 GET /up/aa
 x-nombre: julian

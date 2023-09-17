@@ -1,27 +1,11 @@
+require_relative 'cell'
 require 'test/unit'
 
-Celda = Struct.new('Celda', :nombre, :arriba, :abajo, :derecha, :izquierda, :tesoro, :fauno)
-
-def traiga(mundo, laberinto, celda)
-  mundo[laberinto.to_sym][celda.to_sym].to_h.compact
-end
-
-def arriba(mundo, laberinto, celda)
-  mundo[laberinto.to_sym][celda.to_sym].to_h[:arriba]
-end
-def abajo(mundo, laberinto, celda)
-  mundo[laberinto.to_sym][celda.to_sym].to_h[:abajo]
-end
-def derecha(mundo, laberinto, celda)
-  mundo[laberinto.to_sym][celda.to_sym].to_h[:derecha]
-end
-def izquierda(mundo, laberinto, celda)
-  mundo[laberinto.to_sym][celda.to_sym].to_h[:izquierda]
-end
 
 class TestCell < Test::Unit::TestCase
   def test_shows_cell_details_by_cell_name
-    mundo = {nabuconudosor: {af1: Celda.new('af1', nil, nil, nil, nil, 'linterna', true)}}
+    # Does not show neighbours
+    mundo = {nabuconudosor: {af1: Celda.new('af1', 'ach', 'rti', 'zlm', 'nac', 'linterna', true)}}
     assert_equal(traiga(mundo, 'nabuconudosor', 'af1'), { nombre: 'af1', tesoro: 'linterna', fauno: true })
   end
 
@@ -32,4 +16,25 @@ class TestCell < Test::Unit::TestCase
     assert_equal(derecha(mundo, 'nabuconudosor', 'af1'), 'zlm')
     assert_equal(izquierda(mundo, 'nabuconudosor', 'af1'), nil)
   end
+
+  def test_pickup_treasure_from_cell_by_name_when_there_is_no_treasure
+    mundo = {nabuconudosor: {af1: Celda.new('af1', 'ach', nil, 'zlm', nil, nil, true)}}
+    assert_equal(pickup(mundo, 'nabuconudosor', 'af1', 'linterna'), nil)
+  end
+
+  def test_pickup_treasure_from_cell_by_name_when_there_is_treasure_but_does_not_match_given_treasure
+    # The cell contains a treasure called 'hacha' but the we try to pick up a 'linterna'
+    mundo = {nabuconudosor: {af1: Celda.new('af1', 'ach', nil, 'zlm', nil, 'hacha', true)}}
+    assert_equal(pickup(mundo, 'nabuconudosor', 'af1', 'linterna'), nil)
+  end
+
+  def test_pickup_treasure_from_cell_by_name_when_there_is_treasure_and_the_treasures_are_equal
+    # The cell contains a treasure called 'linterna' and we try to pick up a 'linterna'
+    mundo = {nabuconudosor: {af1: Celda.new('af1', 'ach', nil, 'zlm', nil, 'linterna', true)}}
+    assert_equal(pickup(mundo, 'nabuconudosor', 'af1', 'linterna'), 'linterna')
+
+    # By picking up the treasure, the cell now does not contain a treasure
+    assert_equal(traiga(mundo, 'nabuconudosor', 'af1'), { nombre: 'af1', fauno: true })
+  end
+
 end
