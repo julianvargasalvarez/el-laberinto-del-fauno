@@ -11,9 +11,16 @@ class ServerTest < Test::Unit::TestCase
     Sinatra::Application
   end
 
-  def test_it_says_hello_world
+  def test_home_without_player_name_shows_welcome_message
     get '/'
     assert last_response.ok?
     assert_equal 'Bienvenido al Laberinto del Fauno', last_response.body
+  end
+
+  def test_home_with_player_name_shows_current_cell
+    header 'X-player', 'nabuconodosor'
+    get '/'
+    assert last_response.ok?
+    assert_equal 'player: nabuconodosor', last_response.body
   end
 end
