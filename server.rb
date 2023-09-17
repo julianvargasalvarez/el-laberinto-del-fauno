@@ -12,7 +12,7 @@ $mundo = {
   julian: {
     start: 'af1',
     af1: Celda.new('af1', 'ach',   nil, nil, nil, nil,       false, nil ),
-    ach: Celda.new('ach', 'rti', 'af1', nil, nil, 'lintern', false, nil ),
+    ach: Celda.new('ach', 'rti', 'af1', nil, nil, 'linterna', false, nil ),
     rti: Celda.new('rti', 'zlm', 'ach', nil, nil, nil,       false, 'a' ),
     zlm: Celda.new('zlm', 'nac', 'rti', nil, nil, nil,       false, nil ),
     nac: Celda.new('nac', nil  , 'zlm', nil, nil, nil,       true,  nil ),
@@ -20,6 +20,24 @@ $mundo = {
     password: 'a'
   },
 
+  hamurabi: {
+    start: 'af1',
+    sacrificio_hecho: false,
+    password: 'trabajo',
+    a1o: Celda.new('a1o', nil, nil, nil, nil, nil, false, nil ), # 1
+    b2p: Celda.new('b2p', nil, nil, nil, nil, nil, false, 'o' ), # 2
+    c3q: Celda.new('c3q', nil, nil, nil, nil, nil, false, 't' ), # 3
+    d4r: Celda.new('d4r', nil, nil, nil, nil, nil, false, 'j' ), # 4
+    e5s: Celda.new('e5s', nil, nil, nil, nil, nil, false, nil ), # 5
+    f1t: Celda.new('f1t', nil, nil, nil, nil, nil, true,  nil ), # 6
+    g2u: Celda.new('g2u', nil, nil, nil, nil, nil, false, nil ), # 7
+    n3v: Celda.new('n3v', nil, nil, nil, nil, nil, false, 'r' ), # 8
+    i4w: Celda.new('i4w', nil, nil, nil, nil, nil, false, 'a' ), # 9
+    j7x: Celda.new('j7x', nil, nil, nil, nil, nil, false, nil ), #10
+    l8y: Celda.new('l8y', nil, nil, nil, nil, nil, false, nil ), #11
+    m9z: Celda.new('m9z', nil, nil, nil, nil, nil, false, 'a' ), #12
+    n3a: Celda.new('n3a', nil, nil, nil, nil, nil, false, 'b' ), #13
+  }
 }
 
 def mundo
