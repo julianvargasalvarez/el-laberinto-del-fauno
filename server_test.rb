@@ -25,7 +25,7 @@ class ServerTest < Test::Unit::TestCase
       player: nabuconodosor
       current: af1
       tesoro: linterna
-
+      pista: a
       Aqui esta el fauno
     TEXT
     assert_equal content, last_response.body
