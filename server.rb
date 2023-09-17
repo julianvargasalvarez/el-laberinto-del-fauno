@@ -5,7 +5,8 @@ mundo = {
   nabuconodosor: {
     start: 'af1',
     af1: Celda.new('af1', 'ach', 'rti', 'zlm', 'nac', 'linterna', true, 'a'),
-    sacrificio_hecho: false
+    sacrificio_hecho: false,
+    password: 'a'
 }}
 
 def pintar(current_user, celda)
@@ -59,12 +60,10 @@ delete '/maleta/:tesoro' do |tesoro|
   current_user = request.env['HTTP_X_PLAYER']
   if current_user.nil?
     status 401
-    'Falta el usuario'
   else
     current_cell = request.env['HTTP_X_CURRENT']
     cell = traiga(mundo, current_user, current_cell)
 
-    pp "############# #{tesoro} #{mundo[current_user.to_sym][:maleta]} #{cell[:fauno]}"
     if mundo[current_user.to_sym][:maleta].eql?(tesoro) && cell[:fauno]
       mundo[current_user.to_sym][:maleta]=nil
       mundo[current_user.to_sym][:sacrificio_hecho]=true
@@ -74,4 +73,24 @@ delete '/maleta/:tesoro' do |tesoro|
     end
 
   end
+end
+
+post '/:cell' do |current_cell|
+  current_user = request.env['HTTP_X_PLAYER']
+  authorization = request.env['HTTP_AUTHORIZATION']
+
+  if current_user.nil?
+    status 401
+  else
+    if authorization.nil?
+      status 401
+    else
+      cell = traiga(mundo, current_user, current_cell)
+      if cell[:fauno] && authorization.split(" ").last.eql?(mundo[:password])
+      else
+        status 401
+      end
+    end
+  end
+
 end

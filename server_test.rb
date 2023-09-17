@@ -51,7 +51,7 @@ class ServerTest < Test::Unit::TestCase
 
   def test_ask_for_exit_with_wrong_password
     header 'X-player', 'nabuconodosor'
-    header 'Authorization: Basic b'
+    header 'Authorization', 'Basic b'
     post '/af1'
     assert_equal 401, last_response.status
   end
