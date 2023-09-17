@@ -50,17 +50,17 @@ get '/' do
   end
 end
 
-get '/cells/:cell' do |current_cell|
+get '/cells/:current_cell' do |current_cell|
   current_user = request.env['HTTP_X_PLAYER']
   if current_user.nil?
     status 401
   else
-    datos_celda = traiga(mundo, current_user, mundo[current_user.to_sym][:start])
+    datos_celda = traiga(mundo, current_user, current_cell)
     pintar(current_user, datos_celda)
   end
 end
 
-post '/cells/:cell' do |current_cell|
+post '/cells/:current_cell' do |current_cell|
   current_user = request.env['HTTP_X_PLAYER']
   authorization = request.env['HTTP_AUTHORIZATION']
 
