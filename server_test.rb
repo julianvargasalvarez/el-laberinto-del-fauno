@@ -37,6 +37,8 @@ class ServerTest < Test::Unit::TestCase
     header 'X-current', 'af1'
     post '/maleta', 'linterna'
     assert_equal 201, last_response.status
+    get '/maleta'
+    assert_equal 'linterna', last_response.body
   end
 
   def test_sacrifises_treasure_to_pan
@@ -44,6 +46,8 @@ class ServerTest < Test::Unit::TestCase
     header 'X-current', 'af1'
 
     post '/maleta', 'linterna' # Pick up the treasure
+    assert_equal 201, last_response.status
+
     delete '/maleta/linterna'  # Sacrifices treasure
 
     assert_equal 200, last_response.status
@@ -52,14 +56,14 @@ class ServerTest < Test::Unit::TestCase
   def test_ask_for_exit_with_wrong_password
     header 'X-player', 'nabuconodosor'
     header 'Authorization', 'Basic b'
-    post '/af1'
+    post '/cells/af1'
     assert_equal 401, last_response.status
   end
 
   def test_ask_for_exit_with_correct_password
     header 'X-player', 'nabuconodosor'
-    header 'Authorization: Basic a'
-    post '/af1'
+    header 'Authorization', 'Basic a'
+    post '/cells/af1'
     assert_equal 200, last_response.status
     assert_equal "Felicitaciones!!!!", last_response.body
   end

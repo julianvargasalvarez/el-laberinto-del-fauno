@@ -29,20 +29,47 @@ get '/' do
   end
 end
 
+post '/cells/:cell' do |current_cell|
+  current_user = request.env['HTTP_X_PLAYER']
+  authorization = request.env['HTTP_AUTHORIZATION']
+
+  if current_user.nil?
+    status 401
+  else
+    if authorization.nil?
+      status 401
+    else
+      cell = traiga(mundo, current_user, current_cell)
+      if cell[:fauno] && authorization.split(" ").last.eql?(mundo[current_user.to_sym][:password])
+        status 200
+        "Felicitaciones!!!!"
+      else
+        status 401
+      end
+    end
+  end
+
+end
+
 post '/maleta' do
   current_user = request.env['HTTP_X_PLAYER']
   if current_user.nil?
     status 401
   else
     current_cell = request.env['HTTP_X_CURRENT']
-    cell = traiga(mundo, current_user, current_cell)
-
-    if cell[:tesoro].eql?(request.body.read.to_s)
-      status 201
-    else
+    if current_cell.nil?
       status 400
+    else
+      cell = traiga(mundo, current_user, current_cell)
+      request_tesoro = request.body.read.to_s
+      if cell[:tesoro].eql?(request_tesoro)
+        tesoro = pickup(mundo, current_user, current_cell, request_tesoro)
+        mundo[current_user.to_sym][:maleta]=tesoro
+        status 201
+      else
+        status 400
+      end
     end
-
   end
 end
 
@@ -63,7 +90,7 @@ delete '/maleta/:tesoro' do |tesoro|
   else
     current_cell = request.env['HTTP_X_CURRENT']
     cell = traiga(mundo, current_user, current_cell)
-
+    pp "####### #{tesoro} #{cell[:fauno]} #{mundo[current_user.to_sym][:maleta]}"
     if mundo[current_user.to_sym][:maleta].eql?(tesoro) && cell[:fauno]
       mundo[current_user.to_sym][:maleta]=nil
       mundo[current_user.to_sym][:sacrificio_hecho]=true
@@ -75,22 +102,3 @@ delete '/maleta/:tesoro' do |tesoro|
   end
 end
 
-post '/:cell' do |current_cell|
-  current_user = request.env['HTTP_X_PLAYER']
-  authorization = request.env['HTTP_AUTHORIZATION']
-
-  if current_user.nil?
-    status 401
-  else
-    if authorization.nil?
-      status 401
-    else
-      cell = traiga(mundo, current_user, current_cell)
-      if cell[:fauno] && authorization.split(" ").last.eql?(mundo[:password])
-      else
-        status 401
-      end
-    end
-  end
-
-end
