@@ -7,7 +7,20 @@ $mundo = {
     af1: Celda.new('af1', 'ach', 'rti', 'zlm', 'nac', 'linterna', true, 'a'),
     sacrificio_hecho: false,
     password: 'a'
-}}
+  },
+
+  julian: {
+    start: 'af1',
+    af1: Celda.new('af1', 'ach',   nil, nil, nil, nil,       false, nil ),
+    ach: Celda.new('ach', 'rti', 'af1', nil, nil, 'lintern', false, nil ),
+    rti: Celda.new('rti', 'zlm', 'ach', nil, nil, nil,       false, 'a' ),
+    zlm: Celda.new('zlm', 'nac', 'rti', nil, nil, nil,       false, nil ),
+    nac: Celda.new('nac', nil  , 'zlm', nil, nil, nil,       true,  nil ),
+    sacrificio_hecho: false,
+    password: 'a'
+  },
+
+}
 
 def mundo
   $mundo

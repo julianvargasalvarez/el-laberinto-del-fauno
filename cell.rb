@@ -1,7 +1,7 @@
 Celda = Struct.new('Celda', :nombre, :arriba, :abajo, :derecha, :izquierda, :tesoro, :fauno, :pista)
 
 def traiga(mundo, laberinto, celda)
-  mundo[laberinto.to_sym][celda.to_sym].to_h.compact.except(:arriba, :abajo, :derecha, :izquierda)
+  mundo[laberinto.to_sym][celda.to_sym].to_h.compact
 end
 
 def arriba(mundo, laberinto, celda)
