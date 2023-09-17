@@ -21,22 +21,23 @@ $mundo = {
   },
 
   hamurabi: {
-    start: 'af1',
+    start: 'a1o',
     sacrificio_hecho: false,
     password: 'trabajo',
-    a1o: Celda.new('a1o', nil, nil, nil, nil, nil, false, nil ), # 1
-    b2p: Celda.new('b2p', nil, nil, nil, nil, nil, false, 'o' ), # 2
-    c3q: Celda.new('c3q', nil, nil, nil, nil, nil, false, 't' ), # 3
-    d4r: Celda.new('d4r', nil, nil, nil, nil, nil, false, 'j' ), # 4
-    e5s: Celda.new('e5s', nil, nil, nil, nil, nil, false, nil ), # 5
-    f1t: Celda.new('f1t', nil, nil, nil, nil, nil, true,  nil ), # 6
-    g2u: Celda.new('g2u', nil, nil, nil, nil, nil, false, nil ), # 7
-    n3v: Celda.new('n3v', nil, nil, nil, nil, nil, false, 'r' ), # 8
-    i4w: Celda.new('i4w', nil, nil, nil, nil, nil, false, 'a' ), # 9
-    j7x: Celda.new('j7x', nil, nil, nil, nil, nil, false, nil ), #10
-    l8y: Celda.new('l8y', nil, nil, nil, nil, nil, false, nil ), #11
-    m9z: Celda.new('m9z', nil, nil, nil, nil, nil, false, 'a' ), #12
-    n3a: Celda.new('n3a', nil, nil, nil, nil, nil, false, 'b' ), #13
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'o' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 't' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'j' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'r' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'a' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'i4w',  'k8y',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'mqz',  'j7x', 'hacha',   false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'a' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'b' ), #13
   }
 }
 
