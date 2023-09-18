@@ -2,7 +2,7 @@ require 'sinatra'
 require_relative 'cell'
 
 $mundo = {
-  nabuconodosor: {
+  nabu: {
     start: 'af1',
     af1: Celda.new('af1', 'ach', 'rti', 'zlm', 'nac', 'linterna', true, 'a'),
     sacrificio_hecho: false,
@@ -13,11 +13,11 @@ $mundo = {
     start: 'af1',
     af1: Celda.new('af1', 'ach',   nil, nil, nil, nil,       false, nil ),
     ach: Celda.new('ach', 'rti', 'af1', nil, nil, 'linterna', false, nil ),
-    rti: Celda.new('rti', 'zlm', 'ach', nil, nil, nil,       false, 'a' ),
-    zlm: Celda.new('zlm', 'nac', 'rti', nil, nil, nil,       false, nil ),
+    rti: Celda.new('rti', 'zlm', 'ach', nil, nil, nil,       false, 'i' ),
+    zlm: Celda.new('zlm', 'nac', 'rti', nil, nil, nil,       false, 's' ),
     nac: Celda.new('nac', nil  , 'zlm', nil, nil, nil,       true,  nil ),
     sacrificio_hecho: false,
-    password: 'a'
+    password: 'si'
   },
 
   hamurabi: {
@@ -38,7 +38,228 @@ $mundo = {
     k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'hacha',   false, nil ), #11
     m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'a' ), #12
     n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'b' ), #13
-  }
+  },
+
+  sargon: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'tiempos',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 't' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'o' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'i' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'p' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'e' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'sierra',  false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'm' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 's' ), #13
+  },
+
+  tiglatpileser: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'persona',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'a' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'p' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'n' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'e' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'o' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'manto',   false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'r' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 's' ), #13
+  },
+
+  nabopolasar: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'familia',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'f' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'i' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'a' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'i' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'm' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'navaja',  false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'a' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'l' ), #13
+  },
+
+  asurbanipal: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'sistema',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'a' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 's' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'e' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'i' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'm' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'pertiga', false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 's' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 't' ), #13
+  },
+
+  nabonido: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'empresa',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'e' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'a' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'm' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 's' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'p' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x',  'bala',   false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'e' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'r' ), #13
+  },
+
+  shamshi: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'mensaje',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'm' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'a' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'e' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 's' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'e' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'escudo',   false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'j' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'n' ), #13
+  },
+
+  marduk: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'cultura',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'c' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'a' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'u' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'r' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'l' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x',  'remo',   false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'u' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 't' ), #13
+  },
+
+  ashur: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'momento',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'o' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'm' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 't' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'o' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'n' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'candil',  false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'm' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'e' ), #13
+  },
+
+  nabuconodosor: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'palabra',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'a' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'a' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'a' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'r' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'l' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'estaca',  false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'b' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'p' ), #13
+  },
+
+  akkad: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'bendito',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'b' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'o' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'e' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 't' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'i' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'moneda',  false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'd' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'n' ), #13
+  },
+
+  adad: {
+    start: 'a1o',
+    sacrificio_hecho: false,
+    password: 'dilubio',
+    #                        up     down   right   left    trea    pan    clue
+    a1o: Celda.new('a1o',    nil,   nil,   'b2p',  nil,     nil,   false, nil ), # 1
+    b2p: Celda.new('b2p',  'c3q',   nil,   nil,    'a1o',   nil,   false, 'o' ), # 2
+    c3q: Celda.new('c3q',  'g2u',  'b2p', 'd4r',   nil,     nil,   false, 'd' ), # 3
+    d4r: Celda.new('d4r',    nil,   nil,  'e5s', 'c3q',     nil,   false, 'i' ), # 4
+    e5s: Celda.new('e5s',  'f1t',   nil,   nil,  'd4r',     nil,   false, nil ), # 5
+    f1t: Celda.new('f1t',    nil, 'e5s',   nil,    nil,     nil,   true,  nil ), # 6
+    g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
+    h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'i' ), # 8
+    i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'b' ), # 9
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'sextante',false, nil ), #11
+    m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'l' ), #12
+    n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'u' ), #13
+  },
+
 }
 
 def mundo

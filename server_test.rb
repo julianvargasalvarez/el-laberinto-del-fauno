@@ -18,10 +18,10 @@ class ServerTest < Test::Unit::TestCase
   end
 
   def test_home_with_player_name_shows_current_cell
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     get '/'
     content = <<-TEXT
-      Player: nabuconodosor
+      Player: nabu
 
       Celda actual: af1
       Tesoro: linterna
@@ -39,7 +39,7 @@ class ServerTest < Test::Unit::TestCase
   end
 
   def test_pickup_treasure_and_post_it_to_the_bag
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     header 'X-current', 'af1'
     post '/maleta', 'linterna'
     assert_equal 201, last_response.status
@@ -48,10 +48,10 @@ class ServerTest < Test::Unit::TestCase
   end
 
   def test_sacrifises_treasure_to_pan
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     header 'X-current', 'af1'
 
-    mundo[:nabuconodosor][:af1][:tesoro] = 'linterna'
+    mundo[:nabu][:af1][:tesoro] = 'linterna'
 
     post '/maleta', 'linterna' # Pick up the treasure
     assert_equal 201, last_response.status
@@ -61,14 +61,14 @@ class ServerTest < Test::Unit::TestCase
   end
 
   def test_ask_for_exit_with_wrong_password
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     header 'Authorization', 'Basic b'
     post '/cells/af1'
     assert_equal 401, last_response.status
   end
 
   def test_ask_for_exit_with_correct_password
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     header 'Authorization', 'Basic a'
     post '/cells/af1'
     assert_equal 200, last_response.status
@@ -76,10 +76,10 @@ class ServerTest < Test::Unit::TestCase
   end
 
   def test_get_details_for_current_cell
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     get '/cells/af1'
     content = <<-TEXT
-      Player: nabuconodosor
+      Player: nabu
 
       Celda actual: af1
       Tesoro: linterna
@@ -97,7 +97,7 @@ class ServerTest < Test::Unit::TestCase
   end
 
   def test_get_details_of_an_unexisting_cell
-    header 'X-player', 'nabuconodosor'
+    header 'X-player', 'nabu'
     get '/cells/aaa'
     assert_equal 404, last_response.status
   end
