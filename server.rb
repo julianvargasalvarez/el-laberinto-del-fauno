@@ -62,7 +62,18 @@ end
 get '/' do
   current_user = request.env['HTTP_X_PLAYER']
   if current_user.nil?
-    'Bienvenido al Laberinto del Fauno'
+    <<-TEXT
+      El laberinto del Fauno
+
+      El Fauno, criatura fascinante que representa a todos los animales
+      vivia feliz con su esposa Flora Martinez.
+
+      Un dia, ella decidio dejarlo para persiguir una carrera en actuacion.
+
+      El Fauno, inundado por la tristeza, decidio construir un laberinto y vivir ahi
+      para que nadie lo molestara.
+
+    TEXT
   else
     datos_celda = traiga(mundo, current_user, mundo[current_user.to_sym][:start])
     pintar(current_user, datos_celda)
@@ -75,7 +86,11 @@ get '/cells/:current_cell' do |current_cell|
     status 401
   else
     datos_celda = traiga(mundo, current_user, current_cell)
-    pintar(current_user, datos_celda)
+    if not datos_celda.empty?
+      pintar(current_user, datos_celda)
+    else
+      status 404
+    end
   end
 end
 

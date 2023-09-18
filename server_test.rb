@@ -14,7 +14,7 @@ class ServerTest < Test::Unit::TestCase
   def test_home_without_player_name_shows_welcome_message
     get '/'
     assert last_response.ok?
-    assert_equal 'Bienvenido al Laberinto del Fauno', last_response.body
+    assert_include last_response.body, 'El laberinto del Fauno'
   end
 
   def test_home_with_player_name_shows_current_cell
@@ -90,5 +90,11 @@ class ServerTest < Test::Unit::TestCase
     TEXT
     assert_equal content, last_response.body
     assert_equal 200, last_response.status
+  end
+
+  def test_get_details_of_an_unexisting_cell
+    header 'X-player', 'nabuconodosor'
+    get '/cells/aaa'
+    assert_equal 404, last_response.status
   end
 end
