@@ -47,15 +47,18 @@ end
 
 def pintar(current_user, celda)
     <<-TEXT
-      player: #{current_user}
-      current: #{celda[:nombre]}
-      #{"tesoro: #{celda[:tesoro]}" if celda[:tesoro]}
-      #{"pista: #{celda[:pista]}" if celda[:pista]}
-      #{"arriba: #{celda[:arriba]}" if celda[:arriba]}
-      #{"abajo: #{celda[:abajo]}" if celda[:abajo]}
-      #{"derecha: #{celda[:derecha]}" if celda[:derecha]}
-      #{"izquierda: #{celda[:izquierda]}" if celda[:izquierda]}
-      #{"Aqui esta el fauno\n" if celda[:fauno]}
+      Player: #{current_user}
+
+      Celda actual: #{celda[:nombre]}
+      #{"Tesoro: #{celda[:tesoro]}" if celda[:tesoro]}
+      #{"Pista: #{celda[:pista]}" if celda[:pista]}
+      #{"Arriba: #{celda[:arriba]}" if celda[:arriba]}
+      #{"Abajo: #{celda[:abajo]}" if celda[:abajo]}
+      #{"Derecha: #{celda[:derecha]}" if celda[:derecha]}
+      #{"Izquierda: #{celda[:izquierda]}" if celda[:izquierda]}
+
+      #{"(╯°□°）╯" if celda[:fauno]}
+
     TEXT
 end
 
@@ -107,7 +110,12 @@ post '/cells/:current_cell' do |current_cell|
       cell = traiga(mundo, current_user, current_cell)
       if cell[:fauno] && authorization.split(" ").last.eql?(mundo[current_user.to_sym][:password])
         status 200
-        "Felicitaciones!!!!"
+        <<-TEXT
+          El Fauno agradece tu visita y dado que has sacrificado todo lo que conseguiste en el laberinto
+          y que lograste descifrar el ascertijo, te has ganado tu libertad.
+
+          Ahora vete..... :'(
+        TEXT
       else
         status 401
       end
@@ -159,11 +167,12 @@ delete '/maleta/:tesoro' do |tesoro|
       mundo[current_user.to_sym][:maleta]=nil
       mundo[current_user.to_sym][:sacrificio_hecho]=true
       status 200
-      "Tu sacrificio ha sido bien recibido, ahora debes adividar la palabra clave"
+      <<-TEXT
+        Tu sacrificio ha sido bien recibido, ahora debes descifrar el acertijo
+      TEXT
     else
       status 400
     end
-
   end
 end
 

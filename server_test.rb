@@ -21,15 +21,17 @@ class ServerTest < Test::Unit::TestCase
     header 'X-player', 'nabuconodosor'
     get '/'
     content = <<-TEXT
-      player: nabuconodosor
-      current: af1
-      tesoro: linterna
-      pista: a
-      arriba: ach
-      abajo: rti
-      derecha: zlm
-      izquierda: nac
-      Aqui esta el fauno
+      Player: nabuconodosor
+
+      Celda actual: af1
+      Tesoro: linterna
+      Pista: a
+      Arriba: ach
+      Abajo: rti
+      Derecha: zlm
+      Izquierda: nac
+
+      (╯°□°）╯
 
     TEXT
     assert_equal content, last_response.body
@@ -70,22 +72,24 @@ class ServerTest < Test::Unit::TestCase
     header 'Authorization', 'Basic a'
     post '/cells/af1'
     assert_equal 200, last_response.status
-    assert_equal "Felicitaciones!!!!", last_response.body
+    assert_include last_response.body, "El Fauno agradece tu visita"
   end
 
   def test_get_details_for_current_cell
     header 'X-player', 'nabuconodosor'
     get '/cells/af1'
     content = <<-TEXT
-      player: nabuconodosor
-      current: af1
-      tesoro: linterna
-      pista: a
-      arriba: ach
-      abajo: rti
-      derecha: zlm
-      izquierda: nac
-      Aqui esta el fauno
+      Player: nabuconodosor
+
+      Celda actual: af1
+      Tesoro: linterna
+      Pista: a
+      Arriba: ach
+      Abajo: rti
+      Derecha: zlm
+      Izquierda: nac
+
+      (╯°□°）╯
 
     TEXT
     assert_equal content, last_response.body
