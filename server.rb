@@ -71,11 +71,21 @@ get '/' do
       El Fauno, criatura fascinante que representa a todos los animales
       vivia feliz con su esposa Flora Martinez.
 
-      Un dia, ella decidio dejarlo para persiguir una carrera en actuacion.
+      Un dia, ella decidio dejarlo para perseguir una carrera en actuacion.
 
       El Fauno, inundado por la tristeza, decidio construir un laberinto y vivir ahi
       para que nadie lo molestara.
 
+      Quien tenga la mala fortuna de caer en el laberinto, debera navegarlo a oscuras,
+      dando un paso a la vez siguiendo pistas y direcciones que aparecen en cada celda del laberinto.
+
+      En alguna celda del laberinto hay un tesoro que deberas guardar en tu maleta. El Fauno exige sacrificar un tesoro para poder darte paso,
+      cuando encuentres al Fauno, deberas sacrificar lo que tengas en la maleta.
+
+      Cada celda tiene un nombre y el nombre de sus vecinos, las paredes son invisibles pero ahi estan.
+      Algunas celdas tinenen una pista que sirve para descifrar el acertijo que te ayudara a salir del laberinto una vez encuentres al Fauno.
+
+      En total el laberinto tiene 13 celdas, 7 letras y 1 tesoro.
     TEXT
   else
     datos_celda = traiga(mundo, current_user, mundo[current_user.to_sym][:start])
