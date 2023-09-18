@@ -42,7 +42,7 @@ class ServerTest < Test::Unit::TestCase
     post '/maleta', 'linterna'
     assert_equal 201, last_response.status
     get '/maleta'
-    assert_equal 'linterna', last_response.body
+    assert_equal 'En la maleta tienes: linterna', last_response.body
   end
 
   def test_sacrifises_treasure_to_pan
