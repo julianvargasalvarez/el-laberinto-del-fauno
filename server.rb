@@ -34,8 +34,8 @@ $mundo = {
     g2u: Celda.new('g2u',  'h3v', 'c3q',   nil,    nil,     nil,   false, nil ), # 7
     h3v: Celda.new('h3v',  'k8y', 'g2u',   nil,    nil,     nil,   false, 'r' ), # 8
     i4w: Celda.new('i4w',    nil,   nil, 'j7x',    nil,     nil,   false, 'a' ), # 9
-    j7x: Celda.new('j7x',    nil,   nil, 'i4w',  'k8y',     nil,   false, nil ), #10
-    k8y: Celda.new('k8y',    nil, 'h3v', 'mqz',  'j7x', 'hacha',   false, nil ), #11
+    j7x: Celda.new('j7x',    nil,   nil, 'k8y',  'i4w',     nil,   false, nil ), #10
+    k8y: Celda.new('k8y',    nil, 'h3v', 'm9z',  'j7x', 'hacha',   false, nil ), #11
     m9z: Celda.new('m9z',    nil,   nil, 'n3a',  'k8y',     nil,   false, 'a' ), #12
     n3a: Celda.new('n3a',    nil,   nil,   nil,  'm9z',     nil,   false, 'b' ), #13
   }
@@ -129,7 +129,7 @@ get '/maleta' do
     status 401
   else
     status 200
-    mundo[current_user.to_sym][:maleta]
+    "En la maleta tienes: #{mundo[current_user.to_sym][:maleta]}"
   end
 end
 
@@ -144,6 +144,7 @@ delete '/maleta/:tesoro' do |tesoro|
       mundo[current_user.to_sym][:maleta]=nil
       mundo[current_user.to_sym][:sacrificio_hecho]=true
       status 200
+      "Tu sacrificio ha sido bien recibido, ahora debes adividar la palabra clave"
     else
       status 400
     end
