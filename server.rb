@@ -1,6 +1,8 @@
 require 'sinatra'
 require_relative 'cell'
 
+set :bind, '0.0.0.0'
+
 $mundo = {
   nabu: {
     start: 'af1',
